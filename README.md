@@ -66,6 +66,10 @@ The code:
     trm.type('cd project3')                     |
     print(trm.type('pwd'))                      |
     # output: /home/c++/project3                |
+                                                |
+    trm.clear()                                 |
+    print(trm.type('pwd'))                      |
+    # output: /home/python/project1             |
     
 This is an example of the difference between TerminalPyth and the standard os.system(). TerminalPyth works with every terminal command, just like a normal terminal call, but allows to keep directory change.
   
