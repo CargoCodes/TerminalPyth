@@ -1,6 +1,7 @@
 # TerminalPyth
 
-Library that allows you to call terminal commands in python whithout discarding director changes (unlike os.system() command does).
+Library that allows you to call terminal commands in python whithout discarding director changes 
+(unlike os.system() command does).
 
 `Install:`
 
@@ -22,7 +23,8 @@ Only one straight-forward method: type. Pass inside it the command you want to b
 
 It works with pretty much every terminal command. 
 
-To use "sudo", if you are not in a terminal session itself, you must add the "-S" option, to read the password from your IDE (e.g. Pycharm).
+To use "sudo", if you are not in a terminal session itself, you must add the "-S" option, 
+to read the password from IDE (e.g. Pycharm).
 
     trm.clear()
 
@@ -31,45 +33,68 @@ This command clears the memory of the directory changes, returning back to the p
     trm.setOutput(output=False)
 
 Changes the state of the return action. If "False", there will be no return value, otherwise there will. \
-The method allows to change the state during the session
+The method allows to change the state during the session.
 
-`Examples`:
+`Example:`
 
 Imagine a basic directory tree:
 
-- home
-    - python
-        - project1
-            - main.py
-        - project2
-            - prj2.py
-    - c++
-        - project3
- 
-The code:
+    - home
+        - python
+            - project1
+                - main.py
+            - prokect2
+                - main2.py
+        - cpp
+            - project3
+                
+This is the difference between TerminalPyth and os.system(), receiving the same exact instructions:
 
-    # /home/python/project1/main.py             |       # /home/python/project1/main.py
-    import terminalpy                           |       import os
-                                                |
-    trm = terminalpy.Terminal(True)             |       os.system('pwd')
-                                                |       # output: /home/python/project1/
-    print(trm.type('pwd'))                      |
-    # output: /home/python/project1             |       os.system('cd ..')
-                                                |       os.systenm('ls')
-    trm.type('cd ..')                           |       # output: main.py
-    trm.type('ls')                              |
-    # output:   project1                        |       os.system('cd ..')
-    #           project2                        |       os.system('cd c++') # Error: Directory not found
-                                                |       os.system('cd project3') #Error: Directory not found
-    trm.type('cd ..')                           |       os.system('pwd')
-    trm.type('cd c++')                          |       # output: /home/python/project1
-    trm.type('cd project3')                     |
-    print(trm.type('pwd'))                      |
-    # output: /home/c++/project3                |
-                                                |
-    trm.clear()                                 |
-    print(trm.type('pwd'))                      |
-    # output: /home/python/project1             |
+    # /home/python/project1/main.py
+    import terminalpy as tp
     
-This is an example of the difference between TerminalPyth and the standard os.system(). TerminalPyth works with every terminal command, just like a normal terminal call, but allows to keep directory change.
-  
+    term = tp.Terminal(output=True)
+    
+    path = term.type('pwd')
+    print(path)
+    # output: /home/python/project1
+
+    term.type('cd ..')
+    print(term.type('ls')
+    # output:   project1
+    #           project2
+
+    term.type('cd ..')
+    term.type('cd cpp')
+    print(term.type('pwd'))
+    # output: /home/cpp
+
+    term.clear()
+    print(term.type('pwd'))
+    # output: /home/python/project1
+
+    --------------------------------
+
+    # /home/python/project2/main2.py
+    import os
+
+    os.system('pwd')
+    # output: /home/python/project2
+
+    os.system('cd ..')
+    os.system('ls')
+    # output: main2.py
+
+    os.system('cd ..')
+    os.system('cd c++') # Error: The directory 'cpp' does not exist
+    os.system('pwd')
+    # output: /home/python/project2
+
+
+The main differences between TerminalPyth and os.system(): \
+    - TerminalPyth allows multiple direcotry changes \
+    - TerminalPyth allows to store the output in a variable \
+    - TerminalPyth lets you chose if return the output or not \
+    - os.system() prints its output always, in any case \
+    - os.system() doesn't allow to store the output \
+    - os.system() doesn't allow multiple directory change
