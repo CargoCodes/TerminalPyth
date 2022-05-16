@@ -98,6 +98,7 @@ class Terminal:
 
                     if output[-1:len(output)] == '\n': # if the return value end with a new line, removes it
                         output = output[0:-1]
+
         if self.__output__ and output != b'' and output != '': # if the user wants the output, makes few more checks before returning
             return output
 
@@ -108,3 +109,7 @@ class Terminal:
     # allows to change the output condition (return or do not return) during the session
     def setOutput(self, outputMode: bool):
         self.__output__ = outputMode
+
+    # removes from the list the last directory change
+    def removeLastCD(self):
+        self.__oldCds__.pop(len(self.__oldCds__)-1)
