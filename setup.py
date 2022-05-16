@@ -12,6 +12,6 @@ setup(
     long_description_type='text/markdown',
     license_files='LICENSE.txt',
     description='Terminal extension for python',
-    version='2.0.0',
+    version='2.1.0',
     packages=['terminalpy']
 )
