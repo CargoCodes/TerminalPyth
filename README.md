@@ -1,13 +1,12 @@
 # TerminalPyth
 
-Library that allows you to call terminal commands in python whithout discarding director changes 
-(unlike os.system() command does).
+### Library that allows you to call terminal commands in python whithout discarding director changes (unlike os.system() method does).
 
-`Install:`
+## `Installation:`
 
     $ pip install terminalpyth
 
-`Usage:`
+## `Usage:`
 
     import terminalpy
 
@@ -19,7 +18,8 @@ Only one straight-forward method: type. Pass inside it the command you want to b
 
     output = trm.type('pwd')
 
-    # in this case, returns path to the current directory, which in this case is stored in "output"
+    # in this case, returns path to the current directory,
+    # which in this case is stored in "output"
 
 It works with pretty much every terminal command. 
 
@@ -35,7 +35,7 @@ This command clears the memory of the directory changes, returning back to the p
 Changes the state of the return action. If "False", there will be no return value, otherwise there will. \
 The method allows to change the state during the session.
 
-`Example:`
+## `Example:`
 
 Imagine a basic directory tree:
 
@@ -48,7 +48,7 @@ Imagine a basic directory tree:
         - cpp
             - project3
                 
-This is the difference between TerminalPyth and os.system(), receiving the same exact instructions:
+This is the difference between TerminalPyth and os, receiving the same exact instructions:
 
     # /home/python/project1/main.py
     import terminalpy as tp
